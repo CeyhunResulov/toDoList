@@ -1,0 +1,60 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .background{
+        position: absolute;
+        top: 50px;
+        left: 50px;
+    }
+}
+#note{
+    margin-top: 10em;
+    position: relative;
+    border: 1px solid red;
+    margin-bottom: 50px;
+    &__box{
+        border: 2px solid orange;
+        padding: 10px;
+        width: 300px;
+
+    }
+    &__submit{
+        background-color: orange;
+        padding: 18px;
+        position: absolute;
+        right: 0;
+    }
+}
+.list{
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    &__parent{
+        border: 1px solid black;
+        margin-bottom: 15px;
+        display: flex;
+        .first__icon{
+            background-color: blue !important;
+        }
+        .icon{
+            border: 1px solid red;
+            padding: 18px;
+            background-color: red;
+        }
+    }
+    &__note{
+        border: 1px solid red;
+        width: 100%;
+        list-style: none;
+        padding: 10px ;
+        box-sizing: border-box;
+        background-color: orange;
+    }
+}
+.list__done{
+    opacity: .5;
+    &--note{
+        text-decoration-line: line-through;
+    }
+}

@@ -1,0 +1,81 @@
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .background {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+#note {
+  margin-top: 10em;
+  position: relative;
+  border: 1px solid red;
+  margin-bottom: 50px;
+}
+
+#note__box {
+  border: 2px solid orange;
+  padding: 10px;
+  width: 300px;
+}
+
+#note__submit {
+  background-color: orange;
+  padding: 18px;
+  position: absolute;
+  right: 0;
+}
+
+.list {
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
+
+.list__parent {
+  border: 1px solid black;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.list__parent .first__icon {
+  background-color: blue !important;
+}
+
+.list__parent .icon {
+  border: 1px solid red;
+  padding: 18px;
+  background-color: red;
+}
+
+.list__note {
+  border: 1px solid red;
+  width: 100%;
+  list-style: none;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: orange;
+}
+
+.list__done {
+  opacity: .5;
+}
+
+.list__done--note {
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
+}
