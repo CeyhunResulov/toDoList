@@ -10,20 +10,18 @@ body{
 }
 #note{
     margin-top: 10em;
-    position: relative;
-    border: 1px solid red;
+    border: 2px solid orange;
     margin-bottom: 50px;
     &__box{
-        border: 2px solid orange;
         padding: 10px;
         width: 300px;
-
+        font-size: 25px;
+        outline: none;
+        border:none;
     }
     &__submit{
         background-color: orange;
-        padding: 18px;
-        position: absolute;
-        right: 0;
+        padding: 10px;
     }
 }
 .list{
@@ -31,20 +29,19 @@ body{
     margin: 0;
     padding: 0;
     &__parent{
-        border: 1px solid black;
+        transition: all ease .5s;
         margin-bottom: 15px;
         display: flex;
-        .first__icon{
+        &--check{
+            padding: 10px;
             background-color: blue !important;
         }
-        .icon{
-            border: 1px solid red;
-            padding: 18px;
+        &--delete{
+            padding: 10px;
             background-color: red;
         }
     }
     &__note{
-        border: 1px solid red;
         width: 100%;
         list-style: none;
         padding: 10px ;
@@ -57,4 +54,14 @@ body{
     &--note{
         text-decoration-line: line-through;
     }
+}
+// icon
+
+.far{
+    color:white;
+    font-size: 25px;
+    pointer-events: none;
+}
+.delete{
+    transform: scale(0);
 }
