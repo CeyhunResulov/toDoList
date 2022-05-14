@@ -2,6 +2,7 @@ const newNote = document.getElementById("note__box");
 const noteUl = document.querySelector(".list");
 const submiNote = document.getElementById("note");
 const elementLI = document.querySelector(".list");
+document.addEventListener("DOMContentLoaded", localStorageRead);
 
 submiNote.addEventListener("submit", noteCreat);
 elementLI.addEventListener("click", doneAndDelete);
@@ -19,19 +20,55 @@ function doneAndDelete(e) {
     clickELement.parentElement.addEventListener("transitionend", (e) =>
       clickELement.parentElement.remove()
     );
+    let lcstoreage = JSON.parse(localStorage.getItem("notes"));
+    let valueClick = clickELement.parentElement.firstElementChild.textContent;
+    lcstoreage.forEach((note) => {
+      if (note === valueClick) {
+        let noteIndex = lcstoreage.indexOf(note);
+        lcstoreage.splice(noteIndex, 1);
+        localStorage.setItem("notes", JSON.stringify(lcstoreage));
+      }
+    });
   }
 }
 
 function noteCreat(e) {
   e.preventDefault();
-  const noteValue = newNote.value;
+  if (newNote.value.split("").length > 0) {
+    localStoreageCreat(newNote.value);
+    elementCreat(newNote.value);
+    newNote.value = "";
+  } else {
+    alert("not Value!!!");
+  }
+}
+
+function localStoreageCreat(newNote) {
+  let noteArr;
+  if (localStorage.getItem("notes") === null) {
+    noteArr = [];
+  } else {
+    noteArr = JSON.parse(localStorage.getItem("notes"));
+  }
+  noteArr.push(newNote);
+  localStorage.setItem("notes", JSON.stringify(noteArr));
+}
+
+function localStorageRead(newNote) {
+  let localSt = JSON.parse(localStorage.getItem("notes"));
+  localSt.forEach((note) => {
+    elementCreat(note);
+  });
+}
+
+function elementCreat(note) {
   // creat div
   const noteDiv = document.createElement("div");
   noteDiv.classList.add("list__parent");
   // creat li
   const noteLi = document.createElement("li");
   noteLi.classList.add("list__note");
-  noteLi.textContent = noteValue;
+  noteLi.textContent = note;
   noteDiv.appendChild(noteLi);
 
   // creat check button
@@ -46,6 +83,5 @@ function noteCreat(e) {
   buttonDelete.classList.add("list__parent--delete");
   buttonDelete.innerHTML = '<i class="far fa-trash-alt"></i>';
   noteDiv.appendChild(buttonDelete);
-  newNote.value = "";
   noteUl.appendChild(noteDiv);
 }
