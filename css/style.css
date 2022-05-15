@@ -1,4 +1,5 @@
 body {
+  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9,6 +10,8 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: aqua;
+  border: 10px dashed darkcyan;
 }
 
 body .background {
@@ -19,7 +22,7 @@ body .background {
 
 #note {
   margin-top: 10em;
-  border: 2px solid orange;
+  border: 2px solid cadetblue;
   margin-bottom: 50px;
 }
 
@@ -32,7 +35,7 @@ body .background {
 }
 
 #note__submit {
-  background-color: orange;
+  background-color: cadetblue;
   padding: 10px;
 }
 
@@ -53,21 +56,25 @@ body .background {
 
 .list__parent--check {
   padding: 10px;
-  background-color: blue !important;
+  background-color: #00ccff !important;
 }
 
 .list__parent--delete {
   padding: 10px;
-  background-color: red;
+  background-color: #ff5e00;
 }
 
 .list__note {
+  -webkit-box-shadow: 5px 5px 5px 10px #69697d;
+          box-shadow: 5px 5px 5px 10px #69697d;
+  font-size: 25px;
   width: 100%;
   list-style: none;
   padding: 10px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  background-color: orange;
+  background-color: cadetblue;
+  color: white;
 }
 
 .list__done {

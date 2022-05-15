@@ -15,6 +15,22 @@ function doneAndDelete(e) {
     clickELement.parentElement.firstElementChild.classList.toggle(
       "list__done--note"
     );
+    if (
+      clickELement.parentElement.firstElementChild.classList.contains(
+        "list__done--note"
+      )
+    ) {
+      localStoreageDoneCreat(
+        clickELement.parentElement.firstElementChild.textContent
+      );
+    } else {
+      let lcStoreageDone = JSON.parse(localStorage.getItem("notesDone"));
+      let doneIndex = lcStoreageDone.indexOf(
+        clickELement.parentElement.firstElementChild.textContent
+      );
+      lcStoreageDone.splice(doneIndex, 1);
+      localStorage.setItem("notesDone", JSON.stringify(lcStoreageDone));
+    }
   } else if (clickELement.classList.contains("list__parent--delete")) {
     clickELement.parentElement.classList.toggle("delete");
     clickELement.parentElement.addEventListener("transitionend", (e) =>
@@ -54,11 +70,23 @@ function localStoreageCreat(newNote) {
   localStorage.setItem("notes", JSON.stringify(noteArr));
 }
 
+function localStoreageDoneCreat(doneNote) {
+  let noteDoneArr;
+  if (localStorage.getItem("notesDone") === null) {
+    noteDoneArr = [];
+  } else {
+    noteDoneArr = JSON.parse(localStorage.getItem("notesDone"));
+  }
+  noteDoneArr.push(doneNote);
+  localStorage.setItem("notesDone", JSON.stringify(noteDoneArr));
+}
+
 function localStorageRead(newNote) {
   let localSt = JSON.parse(localStorage.getItem("notes"));
   localSt.forEach((note) => {
     elementCreat(note);
   });
+  doneNoteFind();
 }
 
 function elementCreat(note) {
@@ -84,4 +112,17 @@ function elementCreat(note) {
   buttonDelete.innerHTML = '<i class="far fa-trash-alt"></i>';
   noteDiv.appendChild(buttonDelete);
   noteUl.appendChild(noteDiv);
+}
+
+function doneNoteFind() {
+  let lcStoreageDone = JSON.parse(localStorage.getItem("notesDone"));
+  let elementLI = document.querySelectorAll(".list__note");
+  elementLI.forEach((doneNote) => {
+    lcStoreageDone.forEach((lcDoneNote) => {
+      if (doneNote.textContent === lcDoneNote) {
+        doneNote.classList.add("list__done--note");
+        doneNote.parentElement.classList.add("list__done");
+      }
+    });
+  });
 }
