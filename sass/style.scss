@@ -33,7 +33,7 @@ body{
     padding: 0;
     &__parent{
         transition: all ease .5s;
-        margin-bottom: 15px;
+        margin-bottom: 25px;
         display: flex;
         &--check{
             padding: 10px;
@@ -69,5 +69,12 @@ body{
     pointer-events: none;
 }
 .delete{
+    display: block;
     transform: scale(0);
+}
+.note__date{
+    font-size: 20px;
+    color:  cadetblue;
+    margin-left: 10px;
+
 }

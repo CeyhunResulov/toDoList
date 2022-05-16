@@ -33,9 +33,11 @@ function doneAndDelete(e) {
     }
   } else if (clickELement.classList.contains("list__parent--delete")) {
     clickELement.parentElement.classList.toggle("delete");
+    clickELement.parentElement.previousSibling.classList.add("delete");
     clickELement.parentElement.addEventListener("transitionend", (e) =>
       clickELement.parentElement.remove()
     );
+    let lcStoreageDone = JSON.parse(localStorage.getItem("notesDone"));
     let lcstoreage = JSON.parse(localStorage.getItem("notes"));
     let valueClick = clickELement.parentElement.firstElementChild.textContent;
     lcstoreage.forEach((note) => {
@@ -43,6 +45,13 @@ function doneAndDelete(e) {
         let noteIndex = lcstoreage.indexOf(note);
         lcstoreage.splice(noteIndex, 1);
         localStorage.setItem("notes", JSON.stringify(lcstoreage));
+      }
+    });
+    lcStoreageDone.forEach((noteDone) => {
+      if (noteDone === valueClick) {
+        let noteDoneIndex = lcStoreageDone.indexOf(noteDone);
+        lcStoreageDone.splice(noteDoneIndex, 1);
+        localStorage.setItem("notesDone", JSON.stringify(lcStoreageDone));
       }
     });
   }
@@ -90,9 +99,16 @@ function localStorageRead(newNote) {
 }
 
 function elementCreat(note) {
+  let noteNewDate = new Date();
+  let noteDay = noteNewDate.getDate();
+  let noteMonth = noteNewDate.getMonth();
+  let noteYear = noteNewDate.getFullYear();
+  let noteHours = noteNewDate.getHours();
+  let noteMinutes = noteNewDate.getMinutes();
   // creat div
   const noteDiv = document.createElement("div");
   noteDiv.classList.add("list__parent");
+
   // creat li
   const noteLi = document.createElement("li");
   noteLi.classList.add("list__note");
@@ -111,6 +127,12 @@ function elementCreat(note) {
   buttonDelete.classList.add("list__parent--delete");
   buttonDelete.innerHTML = '<i class="far fa-trash-alt"></i>';
   noteDiv.appendChild(buttonDelete);
+
+  // time
+  const noteDate = document.createElement("span");
+  noteDate.classList.add("note__date");
+  noteDate.textContent = `${noteDay}: ${noteMonth}: ${noteYear}    ${noteHours}:${noteMinutes}`;
+  noteUl.appendChild(noteDate);
   noteUl.appendChild(noteDiv);
 }
 

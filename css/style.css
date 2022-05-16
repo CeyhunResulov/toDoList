@@ -48,7 +48,7 @@ body .background {
 .list__parent {
   -webkit-transition: all ease .5s;
   transition: all ease .5s;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -93,6 +93,13 @@ body .background {
 }
 
 .delete {
+  display: block;
   -webkit-transform: scale(0);
           transform: scale(0);
+}
+
+.note__date {
+  font-size: 20px;
+  color: cadetblue;
+  margin-left: 10px;
 }
