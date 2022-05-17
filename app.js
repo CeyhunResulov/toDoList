@@ -34,7 +34,7 @@ function doneAndDelete(e) {
   } else if (clickELement.classList.contains("list__parent--delete")) {
     clickELement.parentElement.classList.toggle("delete");
     clickELement.parentElement.previousSibling.classList.add("delete");
-    clickELement.parentElement.addEventListener("transitionend", (e) =>
+    clickELement.parentElement.addEventListener("transitionend", () =>
       clickELement.parentElement.remove()
     );
     let lcStoreageDone = JSON.parse(localStorage.getItem("notesDone"));
